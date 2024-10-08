@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript</title>
+    
+  </head>
+  <body>
+    <script>
+      function inputNumber() {
+        const randomNumber = Math.floor(Math.random() * 10) + 1;
+        const numm = document.getElementById("inputNum").value;
+        const demo = document.getElementById("demo");
+
+        // Javascript random number check
+        if (randomNumber === inputNumber) {
+          demo.innerHTML = "Good work";
+        } else {
+          demo.innerHTML = "not matched";
+        }
+      }
+
+      // Initialize an empty array
+      let items = [];
+
+      // Function to add item to the array and display it
+      function addItem() {
+        let item = document.getElementById("itemInput").value;
+
+        // Only add if input is not empty
+        if (item) {
+          items.push(item); 
+          document.getElementById("itemInput").value = "";
+        }
+      }
+      function displayItems() {
+        let itemList = document.getElementById("itemList");
+        itemList.innerHTML = ""; // Clear existing list
+
+        // Loop through the array and display each item
+        items.forEach ((item, index) => {
+          outcome = `element ${index+1} = ${item}`
+          let listItem = document.createElement("li");
+          listItem.textContent = outcome;
+          itemList.appendChild(listItem);
+        });
+      }
+      function closestNumberTo100(num3, num4) {
+        let value1 = Math.abs(100 - num3);
+        let value2 = Math.abs(100 - num4);
+        if (value1 < value2) {
+          return num3;
+        } else if (value2 < value1) {
+          return num4;
+        } else {
+          return "The two numbers are equally closest to the number!";
+        }
+      }
+      function enterTwoNumbers() {
+        let num3 = document.getElementById("num3").value;
+        let num4 = document.getElementById("num4").value;
+
+        num3 = parseFloat(num3);
+        num4 = parseFloat(num4);
+
+        if (isNaN(num3) || isNaN(num4)) {
+          document.getElementById("Result").innerText =
+            "Please enter valid numerical values.";
+          return;
+        }
+
+        let Result = closestNumberTo100(num3, num4);
+        document.getElementById(
+          "Result"
+        ).innerText = `The number closest to 100 is:${Result}`;
+      }
+
+      // Function to check if either number is in the range 50 to 99
+      function isInRange(num5, num6) {
+        return (num5 >= 50 && num5 <= 99) || (num6 >= 50 && num6 <= 99);
+      }
+
+      // Function to get input values, check range, and display the result
+      function checkRange() {
+        // Get the values from the input fields
+        let num5 = parseFloat(document.getElementById("num5").value);
+        let num6 = parseFloat(document.getElementById("num6").value);
+
+        // Check if either number is in the range and display the result
+        if (isInRange(num5, num6)) {
+          document.getElementById("range").innerText = "True: One of the numbers is in the range of 50 to 99.";
+        } else {
+          document.getElementById("range").innerText = "False: Neither number is in the range.";
+        }
+      }
+    </script>
+
+    <div>
+      <h2>Random numbers</h2>
+      <input type="number" id="inputNum" placeholder="enter a number" />
+      <button onclick="inputNumber()">click here</button>
+      <p id="demo"></p>
+    </div>
+    <div>
+      <h2>Closest number to 100</h2>
+      <input type="number" id="num3" placeholder="Enter the first number:" />
+      <input type="number" id="num4" placeholder="Enter the second number:" />
+      <button onclick="enterTwoNumbers()">click here</button>
+      <h3 id="Result"></h3>
+    </div>
+
+    <div>
+      <h2>Add of items to an array</h2>
+      <input type="text" id="itemInput" placeholder="Enter an item" />
+      <button onclick="addItem()">Add Item</button>
+      <button onclick="displayItems()">Display Item</button>
+      <h3>Items in the Array:</h3>
+      <ul id="itemList"></ul>
+    </div>
+    <div>
+      <h2>Check if a Number is in the Range 50-99</h2>
+      <input type="number" id="num5" placeholder="Enter the first number" />
+      <input type="number" id="num6" placeholder="Enter the second number" />
+      <button onclick="checkRange()">Check Range</button>
+      <h3 id="range"></h3>
+    </div>
+  </body>
+</html>
